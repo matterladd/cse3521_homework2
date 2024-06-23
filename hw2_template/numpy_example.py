@@ -10,12 +10,71 @@ A = np.random.rand(3, 5)
 B = np.zeros((3, 1))
 C = np.ones((1, 3))
 D = np.linspace(0, 5, num=6)
+E = np.array([[1,2,3,4],[5,6,7,8]])
 
+D = E.shape[0] # feature dimension
+N = E.shape[1] # number of data instances
+
+print(D)
+print(N)
+
+# print(E)
+# print(E.ndim)
+# print(E.shape)
+# print(np.mean(E, axis = 1))
+# print(np.mean(E, axis = 1).shape)
+# print((np.mean(E, axis = 1)).reshape(2,1))
+
+# mu = (np.mean(E, axis = 1)).reshape(2,1)
+# print(mu)
+# print(E - mu)
+
+# print(E ** 2)
+# print(np.sum(E, axis = 0))
+# print((np.sum(E, axis = 0) / 3))
+
+mu = np.mean(E, axis = 1).reshape(D, 1)
+print("E:")
+print(E)
+print("mu:")
+print(mu)
+
+workingS = E - mu # broadcasting mu vector to subtract each column vector in workingS
+workingS = workingS ** 2 # squares each number in the matrix
+print("Squared data:")
+print(workingS)
+sumOfRows = np.sum(workingS, axis = 1) # sums the rows of workingS
+print("sumOfRows:")
+print(sumOfRows)
+varianceArray = (sumOfRows / (N - 1)).reshape(D, 1) # gives the variance for each feature in a D-by-1 matrix
+
+print("Variance: ")
+print(varianceArray)
+
+print("real cov of E:")
+print(np.cov(E))
+print()
+
+X = np.copy(E)
+mean_X = np.mean(X, axis=1, keepdims=True)
+print("Mean with keepdims:")
+print(mean_X)
+
+# Subtract the mean from each element to get a zero-mean matrix
+X_zero_mean = X - mean_X
+
+# Calculate the covariance matrix
+cov_matrix = (X_zero_mean @ X_zero_mean.T) / (X.shape[1] - 1)
+
+print(cov_matrix)
+
+"""
 # Print
 print(A)
 print(B)
 print(C)
 print(D)
+print(type(D))
 
 # Print shapes
 print(A.shape)
@@ -75,3 +134,4 @@ print(V)
 print(np.argsort(V))
 print(np.argsort(V)[::-1])
 print(V[np.argsort(V)])
+"""
