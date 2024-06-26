@@ -68,6 +68,15 @@ cov_matrix = (X_zero_mean @ X_zero_mean.T) / (X.shape[1] - 1)
 
 print(cov_matrix)
 
+X = np.array([[20, 8, -6, 6], [5, -2, -3, 4]])
+
+print(np.cov(X))
+
+negativeSquareRootC = np.array([[0.133,0.096],[0.096,0.418]])
+z = np.array([-1,-3])
+
+print()
+print(np.matmul(negativeSquareRootC, z))
 """
 # Print
 print(A)

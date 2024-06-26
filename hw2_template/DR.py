@@ -216,10 +216,6 @@ def PCA(X, out_dim):
     ### Your job 1 starts here ###
     mu = np.mean(X, axis=1, keepdims=True)
     workingS = X - mu # broadcasting mu vector to subtract each column vector in workingS
-    # workingS = workingS ** 2 # squares each number in the matrix
-    # sumOfRows = np.sum(workingS, axis=1) # sums the rows of workingS
-    # varianceArray = (sumOfRows / (N - 1)).reshape(D, 1) # gives the variance for each feature in a D-by-1 matrix
-
     Sigma = np.matmul(workingS, np.transpose(workingS)) / (N - 1)
 
     #You _MAY_ use numpy's mean, sum, matmul, etc functions
@@ -281,7 +277,7 @@ def main(args):
         3. Useful tool: check the "np.matmul" function and the builtin "transpose()" function of a numpy array 
         4. Hint: Just one line of code
         """
-        new_X = ...
+        new_X = np.matmul(W.transpose(), X - mu)
 
         ### Your job 2 ends here ###
 
